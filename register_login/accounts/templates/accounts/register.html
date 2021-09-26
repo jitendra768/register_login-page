@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        .container{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Register</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="username">Username</label><br>
+        {{form.username}} <br>
+        <label for="email">Email</label><br>
+        {{form.email}} <br>
+        <label for="password1">Password</label><br>
+        {{form.password1}} <br>
+        <label for="password2">Confirm Password</label><br>
+        {{form.password2}} <br>
+
+        {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                {{ error|escape }}
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            {{ error|escape }}
+        {% endfor %}
+        {% endif %} <br><br>
+        <input type="submit" value="Register">
+    </form>
+</div>
+</body>
+</html>
